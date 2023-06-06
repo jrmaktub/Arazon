@@ -13,7 +13,8 @@ describe("Arazon", () => {
   beforeEach(async ()=>{
     //setup Accounts
     [deployer,buyer] = await ethers.getSigners()
-    console.log(deployer,buyer) 
+    // console.log(deployer.address,buyer.address) 
+
     //deploy contract
     const Arazon = await ethers.getContractFactory('Arazon')
     arazon = await Arazon.deploy()
@@ -23,11 +24,10 @@ describe("Arazon", () => {
 
   describe("Deployment", ()=>{
 
-    it('has a name', async ()=>{
-
-      const name = await arazon.name()
-      expect(name).to.equal("Arazon")
+    it("Sets the owner", async ()=>{
+      expect(await arazon.owner()).to.equal(deployer.address)
     })
+
 
   })
 
