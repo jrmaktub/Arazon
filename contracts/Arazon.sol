@@ -19,6 +19,8 @@ contract Arazon {
     
     mapping(uint256 => Item) public items;
 
+    event List(string name, uint256 cost, uint256 quantity);
+
     constructor(){
 
         //person deploying sc
@@ -48,7 +50,11 @@ contract Arazon {
             _stock);
 
         // Save Item Struct to blockchain
-        
+        items[_id] = item;
+
+        //emit Event
+        emit List(_name, _cost, _stock);
+         
     }
 
     // Buy products
