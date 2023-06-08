@@ -12,6 +12,22 @@ const tokens = (n) => {
 }
 
 async function main() {
+  //setup accounts
+  const [deployer] = await ethers.getSigners()
+
+  //deploy Arazon contract
+  const Arazon = await hre.ethers.getContractFactory("Arazon")
+  const arazon = await Arazon.deploy()
+  await arazon.deployed()
+
+  console.log(`Deployed Arazon Contract at: ${arazon.address}\n`)
+
+  //list items...
+  for (let i= 0; i < items.length; i++){
+    const transaction = await arazon.connect(deployer).list(
+      
+    )
+  }
 
 }
 
